@@ -1,0 +1,16 @@
+{
+  "name": "cf-feishu-webhook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker 转发 webhook 到飞书群机器人",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test \"test/*.test.js\"",
+    "test:mock": "node test/mock-feishu-server.js 8899"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

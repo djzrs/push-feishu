@@ -1,0 +1,28 @@
+name = "cf-feishu-webhook"
+main = "src/index.js"
+compatibility_date = "2026-10-30"
+
+# 部署后可访问的路径:
+#   https://<worker>.workers.dev/         通用转发
+#   https://<worker>.workers.dev/github   GitHub webhook
+
+# 也可以绑定自定义域名/路由(可选):
+# routes = [
+#   { pattern = "webhook.example.com", custom_domain = true }
+# ]
+
+# ===== 环境变量(纯文本) =====
+[vars]
+# 允许转发的 GitHub 事件，逗号分隔
+GITHUB_EVENTS = "push,ping,pull_request,issues,issue_comment,star,fork,release,watch"
+
+# 通用入口的签名防重放最大时间偏差(秒)
+MAX_SKEW = "300"
+
+# ===== 机密(secret) =====
+# 以下变量请勿写在配置里，用 wrangler secret put 设置:
+#   FEISHU_WEBHOOK_URL  飞书机器人 webhook 地址 (必填)
+#   FEISHU_SECRET       飞书机器人签名密钥 (未开启签名校验可不设)
+#   GITHUB_SECRET       GitHub webhook Secret (在 GitHub 仓库设置里填同一个)
+#   RELAY_SECRET        通用转发签名密钥 (自定义来源用)
+#   WEBHOOK_TOKEN       Bearer Token 简单鉴权 (可选，与 RELAY_SECRET 二选一)
